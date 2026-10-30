@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Overené tipy, kam ísť po celom Slovensku. Každú nedeľu nový týždeň.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Vivio – kam ísť</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lora:ital,wght@1,600&display=swap">
+<style>
+/* Layout: one mobile-first column (max 720px) on dot-grid paper; sticky filter bar; events grouped by day as sticker cards */
+:root{
+  --paper:#FBF8F1; --dot:#E3DBCB; --ink:#0D1B2A; --ink-2:#3B4756; --ink-3:#5E6874;
+  --card:#FFFFFF; --line:#0D1B2A; --chip:#F1EBDF; --kraft:#E8DFCC;
+  --yellow:#FFD233; --yellow-ink:#8A6A00; --green:#3E9B42; --blue:#1688C4; --blue-bright:#1BA7E8;
+  --gem:#FFE89A; --shadow:#0D1B2A; --hl:#FFD233; --logo-bg:transparent;
+  --f-display:"Poppins","Helvetica Neue",Arial,sans-serif;
+  --f-hand:"Lora",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0E1824; --dot:#1E2B3A; --ink:#F4F1EA; --ink-2:#C9D2DC; --ink-3:#9AA6B2;
+  --card:#16222F; --line:#3A4D61; --chip:#1D2C3B; --kraft:#1A2633;
+  --yellow:#FFD233; --yellow-ink:#FFD233; --green:#6CC870; --blue:#5CC3F2; --blue-bright:#5CC3F2;
+  --gem:#5A4A10; --shadow:#000000; --hl:rgba(255,210,51,.38); --logo-bg:#F4F1EA; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0E1824; --dot:#1E2B3A; --ink:#F4F1EA; --ink-2:#C9D2DC; --ink-3:#9AA6B2;
+  --card:#16222F; --line:#3A4D61; --chip:#1D2C3B; --kraft:#1A2633;
+  --yellow:#FFD233; --yellow-ink:#FFD233; --green:#6CC870; --blue:#5CC3F2; --blue-bright:#5CC3F2;
+  --gem:#5A4A10; --shadow:#000000; --hl:rgba(255,210,51,.38); --logo-bg:#F4F1EA; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background-color:var(--paper);background-image:radial-gradient(var(--dot) 1.6px,transparent 1.6px);background-size:26px 26px;color:var(--ink);font-family:var(--f-display);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 40px}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blue-bright);outline-offset:2px}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{width:92px;height:auto;display:block;background:var(--logo-bg);border-radius:14px;padding:4px}
+.tag{margin:0;font-weight:800;font-size:17px;letter-spacing:-.01em;white-space:nowrap}
+.tag .a{color:var(--blue-bright)}.tag .b{color:#E2B300}.tag .c{color:var(--green)}
+.hero{margin-top:18px;display:flex;flex-direction:column;gap:6px}
+.kicker{margin:0;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+h1{margin:0;font-size:clamp(34px,8.5vw,52px);line-height:1;font-weight:800;letter-spacing:-.04em;text-wrap:balance}
+.hl{background:linear-gradient(180deg,transparent 58%,var(--hl) 58%,var(--hl) 90%,transparent 90%);padding:0 4px}
+.hand{font-family:var(--f-hand);font-style:italic;font-weight:600}
+.sub{margin:4px 0 0;font-size:17px;color:var(--ink-2);transform:rotate(-1deg);transform-origin:left}
+
+.weeknav{margin-top:16px;display:flex;align-items:center;gap:8px}
+.weeknav .lbl{flex:1;min-width:0;text-align:center;font-weight:700;font-size:16px;background:var(--card);border:2.5px solid var(--line);border-radius:12px;padding:8px 10px;box-shadow:3px 4px 0 var(--shadow)}
+.iconbtn{width:44px;height:44px;flex:none;border-radius:12px;border:2.5px solid var(--line);background:var(--card);display:grid;place-items:center;box-shadow:3px 4px 0 var(--shadow)}
+.iconbtn:disabled{opacity:.35;cursor:default;box-shadow:none}
+.iconbtn svg{width:20px;height:20px}
+
+/* sticky filters */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:18px calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0;padding:10px max(16px,env(safe-area-inset-left,0px)) 10px;background:var(--paper);border-bottom:2px dashed var(--dot);display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.row::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:38px;padding:7px 14px;border-radius:999px;border:2px solid var(--line);background:var(--card);font-size:14px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.day{flex-direction:column;gap:0;line-height:1.1;padding:6px 12px;border-radius:14px;min-width:52px}
+.chip.day small{font-size:11px;font-weight:600;opacity:.75;text-transform:uppercase;letter-spacing:.06em}
+.chip.day b{font-size:17px}
+.chip .n{font-size:11px;font-weight:700;background:var(--chip);color:var(--ink);border-radius:999px;padding:1px 7px}
+.chip[aria-pressed="true"] .n{background:var(--yellow);color:#0D1B2A}
+.searchrow{display:flex;gap:8px}
+.search{flex:1;min-width:0;height:42px;border-radius:12px;border:2px solid var(--line);background:var(--card);padding:0 12px 0 38px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235E6874' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:11px center;background-size:18px}
+.gemtoggle{flex:none;height:42px;padding:0 12px;border-radius:12px;border:2px solid var(--line);background:var(--card);font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.gemtoggle[aria-pressed="true"]{background:var(--yellow);color:#0D1B2A;border-color:#0D1B2A}
+.gemtoggle svg{width:16px;height:16px}
+
+/* pick */
+.pick{position:relative;margin-top:22px;background:var(--card);border:3px solid var(--line);border-radius:16px;padding:18px 18px 16px;box-shadow:6px 7px 0 var(--shadow);transform:rotate(-.6deg)}
+.pick .stamp{position:absolute;right:-8px;top:-18px;background:var(--yellow);color:#0D1B2A;border:2.5px dashed #0D1B2A;border-radius:999px;padding:6px 14px;font-weight:800;font-size:13px;letter-spacing:.08em;transform:rotate(6deg)}
+.pick .note{margin:0 0 4px;font-size:17px;color:var(--ink-2)}
+.pick h2{margin:0;font-size:24px;line-height:1.15;letter-spacing:-.02em}
+.pick p{margin:6px 0 0}
+
+/* list */
+.status{margin-top:16px;font-size:14px;color:var(--ink-3)}
+.daygrp{margin-top:26px}
+.dayh{display:flex;align-items:baseline;gap:10px;margin:0 0 12px}
+.dayh h3{margin:0;font-size:22px;letter-spacing:-.02em}
+.dayh span{font-family:var(--f-hand);font-style:italic;font-weight:600;color:var(--ink-2);font-size:16px}
+.cards{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;padding:14px 14px 12px;box-shadow:4px 5px 0 var(--shadow);display:flex;flex-direction:column;gap:8px}
+.card:nth-child(odd){transform:rotate(-.25deg)}.card:nth-child(even){transform:rotate(.25deg)}
+.chead{display:flex;gap:10px;align-items:flex-start}
+.chead .t{flex:1;min-width:0}
+.card h4{margin:0;font-size:18px;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:14px;color:var(--ink-2)}
+.meta span{display:inline-flex;align-items:center;gap:5px}
+.meta svg{width:15px;height:15px;flex:none}
+.desc{margin:0;font-size:14.5px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.t-kraj,.t-cat,.t-gem,.t-free{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px}
+.t-kraj{background:var(--ink);color:var(--paper)}
+.t-cat{background:var(--chip)}
+.t-gem{background:var(--gem);color:var(--ink)}
+.t-free{border:1.5px solid var(--green);color:var(--green)}
+.cfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
+.more{font-weight:700;font-size:14px;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:4px;min-height:36px}
+.more:hover{text-decoration:underline}
+.save{width:44px;height:44px;border-radius:12px;border:2px solid var(--line);background:var(--card);display:grid;place-items:center;flex:none}
+.save svg{width:20px;height:20px}
+.save[aria-pressed="true"]{background:var(--yellow);border-color:#0D1B2A;color:#0D1B2A}
+
+.empty{margin-top:26px;background:var(--card);border:2.5px dashed var(--line);border-radius:14px;padding:22px;text-align:center}
+.empty p{margin:0}
+.empty .hand{font-size:20px;margin-bottom:6px}
+
+footer{margin-top:40px;background:var(--kraft);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center}
+footer .tag{font-size:22px}
+footer p{margin:0;font-size:13px;color:var(--ink-2)}
+footer .ig{font-weight:700;color:var(--ink);user-select:all}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <img class="logo" src="vivio-logo.png" alt="vivio">
+    <p class="tag"><span class="a">Neprežívaj</span> <span class="b">•</span> <span class="c">Ži</span></p>
+  </header>
+
+  <section class="hero" aria-labelledby="h1">
+    <p class="kicker" id="kicker">Tipy na týždeň · celé Slovensko</p>
+    <h1 id="h1">Kam ísť <span class="hl">tento týždeň</span></h1>
+    <p class="sub hand" id="sub">od malých dedinských akcií po veľké koncerty, všetko overené</p>
+  </section>
+
+  <nav class="weeknav" aria-label="Výber týždňa">
+    <button class="iconbtn" id="prevW" aria-label="Predchádzajúci týždeň"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg></button>
+    <div class="lbl" id="weekLbl" aria-live="polite">Načítavam…</div>
+    <button class="iconbtn" id="nextW" aria-label="Ďalší týždeň"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+  </nav>
+
+  <div class="bar" id="bar">
+    <div class="row" id="krajRow" role="group" aria-label="Kraj"></div>
+    <div class="row" id="dayRow" role="group" aria-label="Deň"></div>
+    <div class="row" id="catRow" role="group" aria-label="Typ akcie"></div>
+    <div class="searchrow">
+      <label for="q" class="sr" hidden>Hľadať</label>
+      <input id="q" class="search" type="search" placeholder="Hľadaj obec, akciu…" autocomplete="off">
+      <button class="gemtoggle" id="gemBtn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/></svg>Klenoty</button>
+    </div>
+  </div>
+
+  <div id="pickBox"></div>
+  <p class="status" id="status" aria-live="polite"></p>
+  <main id="list"></main>
+
+  <footer>
+    <p class="tag"><span class="a">Neprežívaj</span> <span class="b">•</span> <span class="c">Ži</span></p>
+    <p>Tipy vyberá Vivi. Každú nedeľu nový týždeň, len akcie s overeným dátumom, časom a miestom.</p>
+    <p>Poznáš akciu, o ktorej nikto nevie? Napíš na Instagram <span class="ig">@vivio_slovensko</span></p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const KRAJE=[["ALL","Celé Slovensko"],["BA","Bratislavský"],["TT","Trnavský"],["TN","Trenčiansky"],["NR","Nitriansky"],["ZA","Žilinský"],["BB","Banskobystrický"],["PO","Prešovský"],["KE","Košický"]];
+  const KRAJ_SHORT={BA:"BA kraj",TT:"TT kraj",TN:"TN kraj",NR:"NR kraj",ZA:"ZA kraj",BB:"BB kraj",PO:"PO kraj",KE:"KE kraj"};
+  const CATS={hudba:"Hudba",festival:"Festival",tradicie:"Tradície",rodina:"S deťmi",divadlo:"Divadlo a kino",vystava:"Výstava",gastro:"Jedlo a víno",pohyb:"Príroda a pohyb",workshop:"Workshop",strasidelne:"Strašidelné",trh:"Trhy a jarmoky",prednaska:"Besedy a prechádzky"};
+  const DOW=["Ne","Po","Ut","St","Št","Pi","So"];
+  const DOW_LONG=["nedeľa","pondelok","utorok","streda","štvrtok","piatok","sobota"];
+  const MES=["januára","februára","marca","apríla","mája","júna","júla","augusta","septembra","októbra","novembra","decembra"];
+  const $=id=>document.getElementById(id);
+  const store={get(k,d){try{const v=localStorage.getItem("vivio:"+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem("vivio:"+k,JSON.stringify(v))}catch(e){}}};
+
+  let weeks=[],wi=0;
+  const st={kraj:store.get("kraj","ALL"),day:"ALL",cat:"ALL",q:"",gem:false};
+  let saved=new Set(store.get("saved",[]));
+
+  const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  const parse=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+  const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+  const fmtShort=d=>d.getDate()+". "+(d.getMonth()+1)+".";
+  function el(tag,attrs,...kids){const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==="class")e.className=attrs[k];else if(k==="text")e.textContent=attrs[k];else if(k.startsWith("on"))e.addEventListener(k.slice(2),attrs[k]);else e.setAttribute(k,attrs[k])}for(const c of kids){if(c==null)continue;e.append(c.nodeType?c:document.createTextNode(c))}return e}
+  function svg(path){const s=document.createElementNS("http://www.w3.org/2000/svg","svg");s.setAttribute("viewBox","0 0 24 24");s.setAttribute("fill","none");s.setAttribute("stroke","currentColor");s.setAttribute("stroke-width","2.2");s.setAttribute("stroke-linecap","round");s.setAttribute("stroke-linejoin","round");s.setAttribute("aria-hidden","true");s.innerHTML=path;return s}
+  const IC={clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',pin:'<path d="M12 21s-7-7.2-7-12a7 7 0 0 1 14 0c0 4.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>',ticket:'<path d="M3 8h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M13 8v10" stroke-dasharray="2 2.5"/>',heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>'};
+
+  function eventDays(ev){const s=parse(ev.date),e=ev.end?parse(ev.end):s;const out=[];for(let d=new Date(s);d<=e;d=addDays(d,1))out.push(iso(d));return out}
+
+  function pickWeek(){const today=iso(new Date());let idx=weeks.findIndex(w=>w.from<=today&&today<=w.to);if(idx<0){idx=weeks.findIndex(w=>w.from>today);if(idx<0)idx=weeks.length-1}return Math.max(0,idx)}
+
+  function filtered(w){
+    const q=st.q.trim().toLowerCase();
+    return (w.events||[]).filter(ev=>{
+      if(st.kraj!=="ALL"&&ev.kraj!==st.kraj)return false;
+      if(st.cat!=="ALL"&&ev.cat!==st.cat)return false;
+      if(st.gem&&ev.size!=="mala")return false;
+      if(st.day==="SAVED"){if(!saved.has(ev.id))return false}
+      else if(st.day==="WE"){const ds=eventDays(ev);const we=[iso(addDays(parse(w.from),4)),iso(addDays(parse(w.from),5)),iso(addDays(parse(w.from),6))];if(!ds.some(d=>we.includes(d)))return false}
+      else if(st.day!=="ALL"&&!eventDays(ev).includes(st.day))return false;
+      if(q){const hay=[ev.title,ev.city,ev.place,ev.desc,ev.okres].join(" ").toLowerCase();if(!hay.includes(q))return false}
+      return true});
+  }
+
+  function chip(label,pressed,on,extra){const b=el("button",{class:"chip"+(extra?" "+extra:""),"aria-pressed":String(pressed),onclick:on});if(typeof label==="string")b.textContent=label;else b.append(...label);return b}
+
+  function renderFilters(w){
+    const base=(w.events||[]);
+    const kr=$("krajRow");kr.replaceChildren();
+    for(const [k,l] of KRAJE){const n=k==="ALL"?base.length:base.filter(e=>e.kraj===k).length;if(k!=="ALL"&&!n)continue;kr.append(chip([l," ",el("span",{class:"n",text:String(n)})],st.kraj===k,()=>{st.kraj=k;store.set("kraj",k);render()}))}
+    const dr=$("dayRow");dr.replaceChildren();
+    dr.append(chip("Celý týždeň",st.day==="ALL",()=>{st.day="ALL";render()}));
+    dr.append(chip("Víkend",st.day==="WE",()=>{st.day="WE";render()}));
+    for(let i=0;i<7;i++){const d=addDays(parse(w.from),i),k=iso(d);dr.append(chip([el("small",{text:DOW[d.getDay()]}),el("b",{text:String(d.getDate())})],st.day===k,()=>{st.day=k;render()},"day"))}
+    dr.append(chip([svg(IC.heart)," Uložené ",el("span",{class:"n",text:String(base.filter(e=>saved.has(e.id)).length)})],st.day==="SAVED",()=>{st.day="SAVED";render()}));
+    dr.querySelectorAll(".chip svg").forEach(s=>{s.style.width="16px";s.style.height="16px"});
+    const cr=$("catRow");cr.replaceChildren();
+    cr.append(chip("Všetko",st.cat==="ALL",()=>{st.cat="ALL";render()}));
+    for(const k in CATS){if(!base.some(e=>e.cat===k))continue;cr.append(chip(CATS[k],st.cat===k,()=>{st.cat=k;render()}))}
+    $("gemBtn").setAttribute("aria-pressed",String(st.gem));
+  }
+
+  function card(ev){
+    const c=el("article",{class:"card"});
+    const t=el("div",{class:"t"},el("h4",{text:ev.title}));
+    const sv=el("button",{class:"save","aria-pressed":String(saved.has(ev.id)),"aria-label":(saved.has(ev.id)?"Odobrať z uložených: ":"Uložiť: ")+ev.title,onclick:()=>{saved.has(ev.id)?saved.delete(ev.id):saved.add(ev.id);store.set("saved",[...saved]);render(true)}},svg(IC.heart));
+    c.append(el("div",{class:"chead"},t,sv));
+    const when=(ev.end&&ev.end!==ev.date?fmtShort(parse(ev.date))+" – "+fmtShort(parse(ev.end)):DOW[parse(ev.date).getDay()]+" "+fmtShort(parse(ev.date)))+(ev.time?" · "+ev.time:"");
+    const meta=el("div",{class:"meta"},el("span",null,svg(IC.clock),when),el("span",null,svg(IC.pin),[ev.place,ev.city].filter(Boolean).join(", ")));
+    if(ev.price)meta.append(el("span",null,svg(IC.ticket),ev.price));
+    c.append(meta);
+    if(ev.desc)c.append(el("p",{class:"desc",text:ev.desc}));
+    const tags=el("div",{class:"tags"},el("span",{class:"t-kraj",text:KRAJ_SHORT[ev.kraj]||ev.kraj}));
+    if(CATS[ev.cat])tags.append(el("span",{class:"t-cat",text:CATS[ev.cat]}));
+    if(ev.size==="mala")tags.append(el("span",{class:"t-gem",text:"skrytý klenot"}));
+    if(/zadarmo|voľný/i.test(ev.price||""))tags.append(el("span",{class:"t-free",text:"zadarmo"}));
+    const foot=el("div",{class:"cfoot"},tags);
+    if(ev.url){foot.append(el("a",{class:"more",href:ev.url,target:"_blank",rel:"noopener"},"Zdroj",svg(IC.arrow)))}
+    c.append(foot);
+    return c;
+  }
+
+  function render(keepScroll){
+    const w=weeks[wi];
+    if(!w){$("weekLbl").textContent="Zatiaľ žiadny týždeň";return}
+    const f=parse(w.from),t=parse(w.to);
+    $("weekLbl").textContent=f.getDate()+". "+(f.getMonth()!==t.getMonth()?(f.getMonth()+1)+". ":"")+"– "+t.getDate()+". "+(t.getMonth()+1)+". "+t.getFullYear();
+    const today=iso(new Date());
+    $("h1").firstChild.textContent="Kam ísť ";
+    $("h1").querySelector(".hl").textContent=(w.from<=today&&today<=w.to)?"tento týždeň":(w.from>today?"budúci týždeň":"ten týždeň");
+    $("prevW").disabled=wi<=0;$("nextW").disabled=wi>=weeks.length-1;
+    renderFilters(w);
+
+    const pb=$("pickBox");pb.replaceChildren();
+    const pick=(w.events||[]).find(e=>e.id===w.pick);
+    if(pick&&st.kraj==="ALL"&&st.day==="ALL"&&st.cat==="ALL"&&!st.q&&!st.gem){
+      pb.append(el("section",{class:"pick","aria-label":"Tip týždňa od Vivi"},el("span",{class:"stamp",text:"VIVI ODPORÚČA"}),el("p",{class:"note hand",text:w.pickNote||"tam by som išla ja"}),el("h2",{text:pick.title}),el("p",{text:DOW_LONG[parse(pick.date).getDay()]+" "+fmtShort(parse(pick.date))+(pick.time?" · "+pick.time:"")+" · "+[pick.place,pick.city].filter(Boolean).join(", ")})));
+    }
+
+    const evs=filtered(w);
+    $("status").textContent=evs.length?(evs.length+(evs.length===1?" akcia":evs.length<5?" akcie":" akcií")+(w.note?" · "+w.note:"")):"";
+    const list=$("list");list.replaceChildren();
+    if(!evs.length){
+      list.append(el("div",{class:"empty"},el("p",{class:"hand",text:st.day==="SAVED"?"zatiaľ nič uložené":"tu je zatiaľ ticho"}),el("p",{text:st.day==="SAVED"?"Ťukni na srdiečko pri akcii a nájdeš ju tu.":"Skús iný kraj, deň alebo typ akcie."})));
+      return;
+    }
+    const byDay=new Map();
+    const order=[];for(let i=0;i<7;i++)order.push(iso(addDays(f,i)));
+    for(const ev of evs){const ds=eventDays(ev).filter(d=>order.includes(d));const key=(st.day!=="ALL"&&st.day!=="WE"&&st.day!=="SAVED")?st.day:(ds[0]||ev.date);if(!byDay.has(key))byDay.set(key,[]);byDay.get(key).push(ev)}
+    for(const k of order){const arr=byDay.get(k);if(!arr)continue;arr.sort((a,b)=>(a.time||"99").localeCompare(b.time||"99"));const d=parse(k);
+      const g=el("section",{class:"daygrp","aria-label":DOW_LONG[d.getDay()]+" "+d.getDate()+". "+MES[d.getMonth()]},el("div",{class:"dayh"},el("h3",{text:DOW_LONG[d.getDay()].replace(/^./,c=>c.toUpperCase())}),el("span",{text:d.getDate()+". "+MES[d.getMonth()]})),el("div",{class:"cards"},...arr.map(card)));
+      list.append(g)}
+  }
+
+  $("prevW").addEventListener("click",()=>{if(wi>0){wi--;st.day="ALL";render()}});
+  $("nextW").addEventListener("click",()=>{if(wi<weeks.length-1){wi++;st.day="ALL";render()}});
+  $("gemBtn").addEventListener("click",()=>{st.gem=!st.gem;render()});
+  let qt;$("q").addEventListener("input",e=>{clearTimeout(qt);qt=setTimeout(()=>{st.q=e.target.value;render()},150)});
+
+  fetch("weeks.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(data=>{
+    weeks=(data.weeks||[]).slice().sort((a,b)=>a.from.localeCompare(b.from));
+    wi=pickWeek();
+    if(!KRAJE.some(k=>k[0]===st.kraj))st.kraj="ALL";
+    render();
+  }).catch(()=>{
+    $("weekLbl").textContent="Tipy sa nepodarilo načítať";
+    $("list").replaceChildren(el("div",{class:"empty"},el("p",{class:"hand",text:"niečo sa zaseklo"}),el("p",{text:"Obnov stránku o chvíľu. Tipy na týždeň pribúdajú každú nedeľu."})));
+  });
+})();
+</script>
+
+</body>
+</html>
