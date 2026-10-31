@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TOP 100 miest západného Slovenska · VIVIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lora:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0D1B2A; --yellow:#FFD233; --green:#4CAF50; --blue:#1BA7E8; --paper:#F2F4F7;
+  --bg:#FAF8F3; --surface:#FFFFFF; --ink:#0D1B2A; --muted:#55606E; --line:#E3DFD6; --chip:#FFFFFF;
+  --sans:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --serif:"Lora",Georgia,"Times New Roman",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#0A1521; --surface:#13243A; --ink:#EEF2F7; --muted:#A3AEBC; --line:#24384F; --chip:#13243A; }
+}
+:root[data-theme="dark"]{ --bg:#0A1521; --surface:#13243A; --ink:#EEF2F7; --muted:#A3AEBC; --line:#24384F; --chip:#13243A; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 150px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* header on the light brand paper so the navy wordmark stays legible */
+header.top{background:#FAF8F3;color:var(--navy)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:4px}
+header.top img.logo{width:84px;height:auto;display:block}
+header.top a.ig{font-size:15px;font-weight:600;text-decoration:none;color:var(--navy);border:2px solid var(--navy);border-radius:999px;padding:7px 14px}
+
+.hero{position:relative;background:var(--navy);color:#fff;margin-top:24px}
+.tear{display:block;width:100%;height:20px;color:var(--navy)}
+.tear.up{position:absolute;top:-19px;left:0}
+.tear.down{position:absolute;bottom:-19px;left:0;transform:scaleY(-1)}
+.hero .wrap{padding-top:28px;padding-bottom:34px}
+.kicker{font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--yellow);margin:0 0 10px}
+.hero h1{font-size:clamp(36px,9.5vw,58px);line-height:1.04;font-weight:800;letter-spacing:-.02em;margin:0 0 16px}
+.hero h1 span{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--yellow)}
+.vivi{display:flex;align-items:center;gap:14px;margin-top:20px}
+.vivi img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #fff;flex:none}
+.vivi p{margin:0;font-size:16px;line-height:1.45;color:#D6DEE8}
+.vivi p b{color:#fff}
+
+/* sticky filters */
+.filters{position:sticky;top:0;z-index:5;background:var(--bg);padding-top:calc(env(safe-area-inset-top,0px) + 12px);padding-bottom:10px;border-bottom:1px solid var(--line);margin-top:30px}
+.search{width:100%;font:inherit;font-size:17px;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+.search:focus,.chip:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.row{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.row::-webkit-scrollbar{display:none}
+.chip{flex:none;font:inherit;font-size:15px;font-weight:500;color:var(--ink);background:var(--chip);border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+:root[data-theme="dark"] .chip[aria-pressed="true"]{background:#EEF2F7;color:var(--navy);border-color:#EEF2F7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip[aria-pressed="true"]{background:#EEF2F7;color:var(--navy);border-color:#EEF2F7}}
+.chip .sw{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;vertical-align:1px}
+.count{font-size:14px;color:var(--muted);margin:8px 0 0}
+
+/* legend */
+.legend{margin:26px 0 0;display:grid;gap:10px}
+.legend div{display:flex;gap:12px;align-items:baseline;font-size:15px;color:var(--muted)}
+.legend b{color:var(--ink);font-weight:600;white-space:nowrap}
+
+/* list */
+main.wrap{padding-bottom:30px}
+h2.region{font-size:24px;line-height:1.2;margin:40px 0 4px;font-weight:800}
+p.region-sub{margin:0 0 14px;font-size:15px;color:var(--muted)}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;position:relative}
+.num{grid-row:span 3;font-weight:800;font-size:28px;line-height:1;min-width:46px;padding-top:4px;letter-spacing:-.02em}
+.card h3{margin:0;font-size:19px;line-height:1.3;font-weight:700}
+.meta{font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+.badge{font-size:12px;font-weight:700;letter-spacing:.04em;border-radius:6px;padding:2px 8px;color:var(--navy)}
+.b-TOP{background:var(--yellow)} .b-TIP{background:var(--green)} .b-POD{background:var(--blue)}
+.desc{margin:4px 0 0;font-size:16px;line-height:1.5}
+.actions{grid-column:2;display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{font:inherit;font-size:14px;font-weight:600;text-decoration:none;color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:10px;padding:7px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn.saved{border-color:var(--green);color:var(--ink)}
+.btn.saved .heart{color:var(--green)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+.cta{position:relative;background:var(--navy);color:#fff;margin-top:50px}
+.cta .wrap{padding-top:30px;padding-bottom:34px;text-align:center}
+.cta h2{font-size:26px;line-height:1.25;margin:0 0 10px}
+.cta p{margin:0 auto 18px;color:#D6DEE8;max-width:34ch}
+.cta a.follow{display:inline-block;background:var(--yellow);color:var(--navy);font-weight:700;text-decoration:none;border-radius:12px;padding:14px 22px;font-size:17px}
+.tagline{font-weight:700;font-size:22px;margin-top:28px}
+.tagline .n{color:var(--blue)} .tagline .d{color:var(--yellow)} .tagline .z{color:var(--green)}
+.fine{font-size:13px;color:#9FB0C3;margin-top:18px;line-height:1.5}
+.guides{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.guides a{font-size:14px;font-weight:600;text-decoration:none;color:#fff;border:1.5px solid rgba(255,255,255,.45);border-radius:999px;padding:6px 14px}
+.guides a[aria-current="page"]{background:var(--yellow);border-color:var(--yellow);color:var(--navy)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <img class="logo" src="vivio-logo.png" alt="vivio">
+    <a class="ig" href="https://www.instagram.com/vivio_slovensko/" target="_blank" rel="noopener">@vivio_slovensko</a>
+  </div>
+</header>
+
+<div class="hero">
+  <svg class="tear up" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,20 L0,6 L17,10 L32,8 L54,3 L78,2 L101,3 L116,7 L147,3 L165,10 L198,9 L220,14 L235,12 L255,4 L271,6 L302,4 L327,10 L349,9 L364,3 L382,10 L405,6 L430,7 L450,12 L478,5 L504,8 L535,11 L555,14 L572,7 L601,4 L624,2 L652,11 L677,13 L698,10 L723,9 L747,12 L779,8 L807,3 L835,10 L869,12 L888,7 L916,2 L939,4 L955,3 L985,4 L1000,8 L1000,20 Z"/></svg>
+  <div class="wrap">
+    <p class="kicker">VIVIO Scout · sprievodca</p>
+    <h1>100 miest západného Slovenska, <span>kam sa oplatí ísť</span></h1>
+    <div class="vivi">
+      <img src="vivi.jpg" alt="Vivi">
+      <p><b>Vybrala Vivi z VIVIO.</b> Známe klasiky aj miesta pod radarom: od Záhoria po Podunajsko. Ulož si tie, kam chceš ísť.</p>
+    </div>
+    <nav class="guides" aria-label="Sprievodcovia"><a href="top100-vychod.html">Východ</a><a href="top100-stred.html">Stred</a><a href="top100-zapad.html" aria-current="page">Západ</a></nav>
+  </div>
+  <svg class="tear down" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,20 L0,6 L17,10 L32,8 L54,3 L78,2 L101,3 L116,7 L147,3 L165,10 L198,9 L220,14 L235,12 L255,4 L271,6 L302,4 L327,10 L349,9 L364,3 L382,10 L405,6 L430,7 L450,12 L478,5 L504,8 L535,11 L555,14 L572,7 L601,4 L624,2 L652,11 L677,13 L698,10 L723,9 L747,12 L779,8 L807,3 L835,10 L869,12 L888,7 L916,2 L939,4 L955,3 L985,4 L1000,8 L1000,20 Z"/></svg>
+</div>
+
+<div class="filters">
+  <div class="wrap">
+    <input class="search" id="q" type="search" placeholder="Hľadaj: hrad, víno, Bratislava…" aria-label="Hľadať">
+    <div class="row" id="regionRow" role="group" aria-label="Región"></div>
+    <div class="row" id="kindRow" role="group" aria-label="Typ"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="legend">
+    <div><span class="badge b-TOP">TOP</span><span>Povinná klasika, ktorú treba vidieť.</span></div>
+    <div><span class="badge b-TIP">TIP</span><span>Silný regionálny tip.</span></div>
+    <div><span class="badge b-POD">POD RADAROM</span><span>Miesta, o ktorých vie málokto.</span></div>
+  </div>
+  <div id="list"></div>
+</main>
+
+<section class="cta">
+  <svg class="tear up" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,20 L0,6 L17,10 L32,8 L54,3 L78,2 L101,3 L116,7 L147,3 L165,10 L198,9 L220,14 L235,12 L255,4 L271,6 L302,4 L327,10 L349,9 L364,3 L382,10 L405,6 L430,7 L450,12 L478,5 L504,8 L535,11 L555,14 L572,7 L601,4 L624,2 L652,11 L677,13 L698,10 L723,9 L747,12 L779,8 L807,3 L835,10 L869,12 L888,7 L916,2 L939,4 L955,3 L985,4 L1000,8 L1000,20 Z"/></svg>
+  <div class="wrap">
+    <h2>Každý týždeň nové miesta a akcie</h2>
+    <p>Na Instagrame ukazujem, kam ísť tento víkend a čo sa deje vo vašom meste.</p>
+    <a class="follow" href="https://www.instagram.com/vivio_slovensko/" target="_blank" rel="noopener">Sledovať @vivio_slovensko</a>
+    <div class="tagline"><span class="n">Neprežívaj</span> <span class="d">•</span> <span class="z">Ži</span></div>
+    <p class="fine">Otváracie hodiny, vstupné, sezónnosť a sprístupnenie si pred cestou over na stránke miesta.<br>Zdroje: Slovakia.travel, oficiálne stránky jednotlivých miest a regionálne organizácie cestovného ruchu.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+"use strict";
+var P = [{"n": "Bratislavský hrad", "m": "Bratislava", "t": "hrad • výhľady", "k": "TOP", "r": "BRATISLAVA A OKOLIE", "d": "Biely hrad nad Dunajom s barokovou záhradou a výhľadom na tri krajiny."}, {"n": "Staré Mesto a Michalská brána", "m": "Bratislava", "t": "mesto • kaviarne", "k": "TOP", "r": "BRATISLAVA A OKOLIE", "d": "Uličky, palácové dvory a kaviarne, najlepšie ráno, kým nie sú plné."}, {"n": "Dóm sv. Martina", "m": "Bratislava", "t": "história • architektúra", "k": "TOP", "r": "BRATISLAVA A OKOLIE", "d": "Korunovačný chrám uhorských kráľov s pozlátenou korunou na veži."}, {"n": "Modrý kostolík", "m": "Bratislava", "t": "architektúra", "k": "TOP", "r": "BRATISLAVA A OKOLIE", "d": "Secesný kostol sv. Alžbety, celý v modrej, ako z cukrárne."}, {"n": "Primaciálny palác", "m": "Bratislava", "t": "história", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "Klasicistický palác so Zrkadlovou sieňou a anglickými tapisériami."}, {"n": "Hrad Devín", "m": "Devín", "t": "hrad • výhľady", "k": "TOP", "r": "BRATISLAVA A OKOLIE", "d": "Ruiny na skale nad sútokom Moravy a Dunaja, symbol slovenských dejín."}, {"n": "Plavba loďou na Devín", "m": "Bratislava", "t": "voda • rodiny", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "V sezóne sa na Devín dá doplaviť loďou po Dunaji priamo z centra."}, {"n": "Devínska Kobyla", "m": "Bratislava – Devínska Nová Ves", "t": "príroda", "k": "POD RADAROM", "r": "BRATISLAVA A OKOLIE", "d": "Stepné stráne s orchideami a výhľadmi, kúsok od mesta."}, {"n": "Sandberg", "m": "Bratislava – Devínska Nová Ves", "t": "príroda • fosílie", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "Pieskové bralo, ktoré bolo kedysi dnom mora, plné skamenelín."}, {"n": "Kamzík a Železná studnička", "m": "Bratislava", "t": "les • výhľady", "k": "TOP", "r": "BRATISLAVA A OKOLIE", "d": "Lesopark s televíznou vežou, sedačkovou lanovkou a jazierkami."}, {"n": "Slavín", "m": "Bratislava", "t": "história • výhľady", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "Pamätník s parkom a jedným z najkrajších výhľadov na mesto."}, {"n": "UFO na Moste SNP", "m": "Bratislava", "t": "výhľady", "k": "TOP", "r": "BRATISLAVA A OKOLIE", "d": "Vyhliadka v „lietajúcom tanieri“ vysoko nad Dunajom."}, {"n": "Sad Janka Kráľa", "m": "Bratislava – Petržalka", "t": "park", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "Jeden z najstarších verejných parkov v strednej Európe, hneď za Dunajom."}, {"n": "Bunkre v Petržalke", "m": "Bratislava – Petržalka", "t": "história", "k": "POD RADAROM", "r": "BRATISLAVA A OKOLIE", "d": "Predvojnové pevnôstky, z ktorých niektoré fungujú ako malé múzeá."}, {"n": "Vodárenské múzeum", "m": "Bratislava – Karlova Ves", "t": "technika", "k": "POD RADAROM", "r": "BRATISLAVA A OKOLIE", "d": "Múzeum v historickej vodárni na brehu Dunaja."}, {"n": "Botanická záhrada UK", "m": "Bratislava – Karlova Ves", "t": "záhrada", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "Skleníky, rozárium a pokojné chodníky pri Dunaji."}, {"n": "Danubiana Meulensteen Art Museum", "m": "Čunovo", "t": "umenie • voda", "k": "TOP", "r": "BRATISLAVA A OKOLIE", "d": "Galéria súčasného umenia na polostrove uprostred Dunaja."}, {"n": "Divoká voda Čunovo", "m": "Čunovo", "t": "šport • voda", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "Areál na rafting a kajak, v lete aj na pozeranie."}, {"n": "Gerulata", "m": "Bratislava – Rusovce", "t": "UNESCO • Rimania", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "Rímsky vojenský tábor, súčasť dunajského limitu zapísaného v UNESCO."}, {"n": "Ostrov Kopáč", "m": "Bratislava – Podunajské Biskupice", "t": "príroda", "k": "POD RADAROM", "r": "BRATISLAVA A OKOLIE", "d": "Lužné lesy a ramená Dunaja, kde človek nemá pocit, že je v hlavnom meste."}, {"n": "Slnečné jazerá", "m": "Senec", "t": "voda • leto", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "Klasické letné kúpanie neďaleko Bratislavy."}, {"n": "Zlaté piesky", "m": "Bratislava", "t": "voda • leto", "k": "TIP", "r": "BRATISLAVA A OKOLIE", "d": "Jazero na okraji mesta na letné kúpanie a vodné športy."}, {"n": "Hrad Červený Kameň", "m": "Častá", "t": "hrad • rodiny", "k": "TOP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Hrad s obrovskými pivnicami a bohatými interiérmi v Malých Karpatoch."}, {"n": "Smolenický zámok", "m": "Smolenice", "t": "zámok", "k": "TOP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Rozprávkový zámok nad lesmi Malých Karpát, obklopený parkom."}, {"n": "Jaskyňa Driny", "m": "Smolenice", "t": "jaskyňa", "k": "TOP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Jediná sprístupnená jaskyňa na západnom Slovensku."}, {"n": "Modra a majolika", "m": "Modra", "t": "remeslo • víno", "k": "TOP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Štúrovo mesto, dielne majoliky a vinárne Malokarpatskej vínnej cesty."}, {"n": "Rozhľadňa Veľká Homola", "m": "Modra – Piesky", "t": "výhľady", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Rozhľadňa nad Modrou s výhľadom na vinohrady a nížinu."}, {"n": "Svätý Jur", "m": "Svätý Jur", "t": "mestečko • víno", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Malé vinárske mestečko s renesančnými domami a hradiskom Neštich."}, {"n": "Jurský Šúr", "m": "Svätý Jur", "t": "príroda", "k": "POD RADAROM", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Rezervácia s jelšovým lesom a náučným chodníkom kúsok od Bratislavy."}, {"n": "Pezinok – zámok a park", "m": "Pezinok", "t": "víno • park", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Zámocký park a vinohradnícke mesto, ideálne na vinobranie."}, {"n": "Marianka", "m": "Marianka", "t": "pútnické miesto", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Najstaršie pútnické miesto na Slovensku, v lesoch nad Stupavou."}, {"n": "Hrad Pajštún", "m": "Borinka", "t": "ruiny • turistika", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Zrúcanina na hrebeni Malých Karpát, krátka túra z Borinky."}, {"n": "Plavecký hrad", "m": "Plavecké Podhradie", "t": "ruiny", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Hrad na vápencovom kopci s výhľadom na Záhorie."}, {"n": "Hrad Korlátko", "m": "Cerová", "t": "ruiny", "k": "POD RADAROM", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Malá zrúcanina v lesoch, kam takmer nikto nechodí."}, {"n": "Hrad Ostrý Kameň", "m": "Buková", "t": "ruiny", "k": "POD RADAROM", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Hrad na skalnom hrebeni s dobrodružným výstupom."}, {"n": "Zámok Budmerice", "m": "Budmerice", "t": "zámok • park", "k": "POD RADAROM", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Romantický zámok v anglickom parku, kedysi Dom spisovateľov."}, {"n": "Skalica", "m": "Skalica", "t": "mesto • gastro", "k": "TOP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Rotunda sv. Juraja, trdelník a vinné pivnice v jednom meste."}, {"n": "Baťov kanál", "m": "Skalica", "t": "voda • bicykel", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Historický kanál na plavbu loďkou alebo cyklovýlet po hrádzi."}, {"n": "Kostol sv. Margity", "m": "Kopčany", "t": "história", "k": "TOP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Jedna z najstarších stavieb na Slovensku z čias Veľkej Moravy."}, {"n": "Zámok Holíč", "m": "Holíč", "t": "zámok", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Barokový zámok, kedysi letné sídlo Habsburgovcov."}, {"n": "Veterný mlyn", "m": "Holíč", "t": "technika", "k": "POD RADAROM", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Zachovaný veterný mlyn, technická pamiatka v poli za mestom."}, {"n": "Bazilika v Šaštíne", "m": "Šaštín-Stráže", "t": "pútnické miesto", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Národná svätyňa Sedembolestnej Panny Márie, patrónky Slovenska."}, {"n": "Hrad Branč", "m": "Podbranč", "t": "ruiny", "k": "POD RADAROM", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Zrúcanina nad Myjavskou pahorkatinou s krásnym výhľadom."}, {"n": "Kúpele Smrdáky", "m": "Smrdáky", "t": "kúpele", "k": "POD RADAROM", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Malé záhorácke kúpele so sírnou vodou a parkom."}, {"n": "Myjavské kopanice", "m": "Myjava", "t": "krajina • bicykel", "k": "TIP", "r": "MALÉ KARPATY A ZÁHORIE", "d": "Rozptýlené osady po kopcoch, typická krajina Myjavska."}, {"n": "Trnava – malý Rím", "m": "Trnava", "t": "mesto • história", "k": "TOP", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Mesto veží a kostolov, s univerzitnou katedrálou a mestskou vežou."}, {"n": "Kaštieľ Dolná Krupá", "m": "Dolná Krupá", "t": "kaštieľ • záhrada", "k": "TIP", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Kaštieľ s Beethovenovou pamätnou izbou a rozáriom."}, {"n": "Hrad Dobrá Voda", "m": "Dobrá Voda", "t": "ruiny", "k": "POD RADAROM", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Zrúcanina nad obcou, kde žil Ján Hollý."}, {"n": "Hrad Tematín", "m": "Lúka", "t": "ruiny • výhľady", "k": "POD RADAROM", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Hrad v Považskom Inovci, ktorý zachraňujú dobrovoľníci."}, {"n": "Kúpeľný ostrov", "m": "Piešťany", "t": "kúpele • park", "k": "TOP", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Kúpeľný ostrov s parkami a Kolonádovým mostom so sochou Barlolamača."}, {"n": "Vtáčí ostrov na Sĺňave", "m": "Piešťany", "t": "príroda • vtáctvo", "k": "POD RADAROM", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Ostrov na vodnej nádrži, kde hniezdia vodné vtáky."}, {"n": "Zámok Hlohovec", "m": "Hlohovec", "t": "zámok • park", "k": "TIP", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Barokový zámok s parkom a letným amfiteátrom."}, {"n": "Vodné dielo Gabčíkovo", "m": "Gabčíkovo", "t": "technika", "k": "TIP", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Obrovské plavebné komory na Dunaji, impozantné najmä pri plavbe lodí."}, {"n": "Dunajské ramená pri Bodíkoch", "m": "Bodíky", "t": "voda • kanoe", "k": "POD RADAROM", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Labyrint ramien v lužných lesoch, najlepšie z kanoe."}, {"n": "Dunajská Streda", "m": "Dunajská Streda", "t": "mesto • termály", "k": "TIP", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Centrum s organickou architektúrou a termálne kúpalisko."}, {"n": "Veľký Meder", "m": "Veľký Meder", "t": "termály", "k": "TIP", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Termálne kúpele, obľúbené celoročne."}, {"n": "At Home Gallery", "m": "Šamorín", "t": "umenie", "k": "POD RADAROM", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Galéria súčasného umenia v bývalej synagóge."}, {"n": "Vodný mlyn Jelka", "m": "Jelka", "t": "technika", "k": "POD RADAROM", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Zachovaný vodný mlyn na Malom Dunaji."}, {"n": "Splav Malého Dunaja", "m": "Žitný ostrov", "t": "voda • kanoe", "k": "TIP", "r": "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV", "d": "Pokojná rieka v lužných lesoch, ideálna na prvý splav."}, {"n": "Nitriansky hrad", "m": "Nitra", "t": "hrad • história", "k": "TOP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Hradný areál s katedrálou, kde sa písali začiatky kresťanstva u nás."}, {"n": "Zobor a Pyramída", "m": "Nitra", "t": "turistika • výhľady", "k": "TIP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Prechádzka na vrch nad Nitrou s výhľadom na celé mesto."}, {"n": "Kostol v Dražovciach", "m": "Nitra – Dražovce", "t": "románsky kostol", "k": "POD RADAROM", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Románsky kostolík na kopci nad Nitrou, krásny pri západe slnka."}, {"n": "Arborétum Mlyňany", "m": "Vieska nad Žitavou", "t": "záhrada", "k": "TOP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Stovky druhov drevín z celého sveta, nádherné na jar aj v jeseni."}, {"n": "Kaštieľ a žrebčín Topoľčianky", "m": "Topoľčianky", "t": "kaštieľ • kone", "k": "TOP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Kaštieľ s anglickým parkom a národný žrebčín, kde chovajú lipicanov."}, {"n": "Topoľčiansky hrad", "m": "Podhradie", "t": "ruiny", "k": "TIP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Hrad s vysokou vežou nad Tribečom."}, {"n": "Hrad Gýmeš", "m": "Jelenec", "t": "ruiny • výhľady", "k": "TIP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Zrúcanina nad Ponitrím s rozhľadom do kraja."}, {"n": "Hrad Hrušov", "m": "Hostie", "t": "ruiny", "k": "POD RADAROM", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Lesná zrúcanina v Pohronskom Inovci, ktorú obnovujú dobrovoľníci."}, {"n": "Kostol v Kostoľanoch pod Tribečom", "m": "Kostoľany pod Tribečom", "t": "história • fresky", "k": "POD RADAROM", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Predrománsky kostolík s veľmi starými freskami."}, {"n": "Bojná – Valy", "m": "Bojná", "t": "história", "k": "POD RADAROM", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Veľkomoravské hradisko s rekonštrukciou hradieb."}, {"n": "Levický hrad", "m": "Levice", "t": "hrad • múzeum", "k": "TIP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Hradný areál s Tekovským múzeom."}, {"n": "Opátstvo Hronský Beňadik", "m": "Hronský Beňadik", "t": "gotika", "k": "TOP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Gotický opevnený kláštor nad Hronom."}, {"n": "Kováčovské kopce", "m": "Kamenica nad Hronom", "t": "príroda • výhľady", "k": "POD RADAROM", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Stepné kopce s výhľadom na Dunaj a Ostrihom."}, {"n": "Štúrovo a Most Márie Valérie", "m": "Štúrovo", "t": "výhľady • termály", "k": "TOP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Most do Ostrihomu s bazilikou a termálne kúpalisko Vadaš."}, {"n": "Komárno – Nádvorie Európy a pevnosť", "m": "Komárno", "t": "mesto • história", "k": "TOP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Námestie s domami v štýloch rôznych krajín a rozsiahle pevnostné valy."}, {"n": "Lodný mlyn", "m": "Kolárovo", "t": "technika", "k": "POD RADAROM", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Lodný mlyn na Malom Dunaji, do ktorého sa dá vojsť."}, {"n": "Hvezdáreň Hurbanovo", "m": "Hurbanovo", "t": "astronómia", "k": "TIP", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Historická hvezdáreň z 19. storočia, ktorá organizuje aj pozorovania pre verejnosť."}, {"n": "Rotunda a kostol v Bíni", "m": "Bíňa", "t": "románsky kostol", "k": "POD RADAROM", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Románska rotunda a dvojvežový kostol v malej obci."}, {"n": "Mŕtve rameno Číčov", "m": "Číčov", "t": "príroda", "k": "POD RADAROM", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Pokojné rameno Dunaja s vtáctvom."}, {"n": "Kalvária", "m": "Nitra", "t": "história • výhľady", "k": "POD RADAROM", "r": "NITRA, TEKOV A PODUNAJSKO", "d": "Kopec s kaplnkami a výhľadom na hrad a Zobor."}, {"n": "Trenčiansky hrad", "m": "Trenčín", "t": "hrad • výhľady", "k": "TOP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Hrad Matúša Čáka nad Váhom, jeden z najväčších u nás."}, {"n": "Rímsky nápis", "m": "Trenčín", "t": "Rimania", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Nápis rímskych legionárov vytesaný do hradnej skaly."}, {"n": "Brezina", "m": "Trenčín", "t": "les • rodiny", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Lesopark nad mestom s chodníkmi a ihriskami."}, {"n": "Hrad Beckov", "m": "Beckov", "t": "hrad", "k": "TOP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Hrad na vysokej skale nad Váhom, krásne obnovený."}, {"n": "Čachtický hrad", "m": "Čachtice", "t": "hrad • legenda", "k": "TOP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Hrad spätý s Alžbetou Bátoriovou, okolo je chránené územie so vzácnymi rastlinami."}, {"n": "Mohyla na Bradle", "m": "Brezová pod Bradlom", "t": "história • výhľady", "k": "TOP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Pamätník M. R. Štefánika s výhľadom na Myjavské kopanice."}, {"n": "Veľká Javorina", "m": "Stará Turá", "t": "hory", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Najvyšší vrch Bielych Karpát na hranici s Moravou."}, {"n": "Bošácka dolina", "m": "Bošáca", "t": "príroda • slivky", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Kopaničiarsky kraj sliviek, sadov a pokojných ciest."}, {"n": "Trenčianske Teplice a Hammam", "m": "Trenčianske Teplice", "t": "kúpele", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Kúpele s orientálnym kúpeľom Hammam Sina."}, {"n": "Uhrovec", "m": "Uhrovec", "t": "história", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Obec, kde sa v jednom dome narodili Ľudovít Štúr aj Alexander Dubček."}, {"n": "Manínska tiesňava", "m": "Považská Bystrica", "t": "rokliny", "k": "TOP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Jedna z najužších tiesňav na Slovensku, skaly takmer nad hlavou."}, {"n": "Kostolecká tiesňava", "m": "Kostolec", "t": "rokliny", "k": "POD RADAROM", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Menej známa sestra Manínskej tiesňavy s potokom a skalami."}, {"n": "Považský hrad", "m": "Považská Bystrica", "t": "ruiny", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Zrúcanina nad Považskou Bystricou s výhľadom na Váh."}, {"n": "Vršatec", "m": "Vršatské Podhradie", "t": "skaly • hrad", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Bradlá a zrúcanina hradu, výrazné skaly v Bielych Karpatoch."}, {"n": "Hrad Lednica", "m": "Lednica", "t": "skalný hrad", "k": "POD RADAROM", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Hrad zakomponovaný do skaly nad obcou."}, {"n": "Strážov", "m": "Strážovské vrchy", "t": "turistika", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Najvyšší vrch Strážovských vrchov s výhľadom do kraja."}, {"n": "Bojnický zámok", "m": "Bojnice", "t": "zámok • rodiny", "k": "TOP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Najznámejší rozprávkový zámok Slovenska."}, {"n": "Zoo Bojnice", "m": "Bojnice", "t": "rodiny", "k": "TOP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Najstaršia zoologická záhrada na Slovensku."}, {"n": "Hrad Sivý Kameň", "m": "Podhradie", "t": "ruiny", "k": "POD RADAROM", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Zrúcanina v lesoch nad hornou Nitrou."}, {"n": "Jazero Duchonka", "m": "Prašice", "t": "voda • leto", "k": "TIP", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Jazero v lesoch Považského Inovca, letné kúpanie a chaty."}, {"n": "Prepoštská jaskyňa", "m": "Bojnice", "t": "história", "k": "POD RADAROM", "r": "TRENČÍN, POVAŽIE A HORNÁ NITRA", "d": "Travertínová jaskyňa priamo v meste s nálezmi pravekého osídlenia."}];
+P.forEach(function(p,i){ p.i = i+1; });
+var REG = []; P.forEach(function(p){ if(REG.indexOf(p.r)<0) REG.push(p.r); });
+var SHORT = {"BRATISLAVA A OKOLIE": "Bratislava", "MALÉ KARPATY A ZÁHORIE": "Malé Karpaty a Záhorie", "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV": "Trnava a Žitný ostrov", "NITRA, TEKOV A PODUNAJSKO": "Nitra a Podunajsko", "TRENČÍN, POVAŽIE A HORNÁ NITRA": "Trenčín a Považie"};
+var FULL = {"BRATISLAVA A OKOLIE": "Bratislava a Okolie", "MALÉ KARPATY A ZÁHORIE": "Malé Karpaty a Záhorie", "TRNAVA, PIEŠŤANY A ŽITNÝ OSTROV": "Trnava, Piešťany a Žitný Ostrov", "NITRA, TEKOV A PODUNAJSKO": "Nitra, Tekov a Podunajsko", "TRENČÍN, POVAŽIE A HORNÁ NITRA": "Trenčín, Považie a Horná Nitra"};
+function title(r){ return FULL[r]||r; }
+
+var saved = [];
+try{ saved = JSON.parse(localStorage.getItem("vivio-top100-zapad-saved")||"[]"); }catch(e){ saved=[]; }
+function store(){ try{ localStorage.setItem("vivio-top100-zapad-saved",JSON.stringify(saved)); }catch(e){} }
+
+var state = { region:"", kind:"", q:"" };
+
+function chip(row,label,val,key,sw){
+  var b=document.createElement("button"); b.className="chip"; b.type="button";
+  if(sw){ var s=document.createElement("span"); s.className="sw"; s.style.background=sw; b.appendChild(s); }
+  b.appendChild(document.createTextNode(label));
+  b.setAttribute("aria-pressed", state[key]===val ? "true":"false");
+  b.addEventListener("click",function(){
+    state[key]=val;
+    [].forEach.call(row.children,function(c){ c.setAttribute("aria-pressed", c===b?"true":"false"); });
+    draw(); window.scrollTo({top: document.querySelector(".filters").offsetTop - 2, behavior:"smooth"});
+  });
+  row.appendChild(b);
+}
+var rr=document.getElementById("regionRow"), kr=document.getElementById("kindRow");
+chip(rr,"Všetky regióny","","region");
+REG.forEach(function(r){ chip(rr,SHORT[r]||r,r,"region"); });
+chip(kr,"Všetky typy","","kind");
+chip(kr,"TOP","TOP","kind","#FFD233");
+chip(kr,"TIP","TIP","kind","#4CAF50");
+chip(kr,"Pod radarom","POD RADAROM","kind","#1BA7E8");
+chip(kr,"♥ Uložené","SAVED","kind");
+
+var qi=document.getElementById("q");
+qi.addEventListener("input",function(){ state.q=qi.value; draw(); });
+
+function norm(s){ return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+
+function card(p){
+  var li=document.createElement("li"); li.className="card";
+  var n=document.createElement("div"); n.className="num"; n.textContent=p.i; li.appendChild(n);
+  var h=document.createElement("h3"); h.textContent=p.n; li.appendChild(h);
+  var m=document.createElement("div"); m.className="meta";
+  var bd=document.createElement("span"); bd.className="badge b-"+(p.k==="POD RADAROM"?"POD":p.k); bd.textContent=p.k; m.appendChild(bd);
+  var t=document.createElement("span"); t.textContent=p.m+" · "+p.t; m.appendChild(t);
+  li.appendChild(m);
+  var d=document.createElement("p"); d.className="desc"; d.textContent=p.d; li.appendChild(d);
+  var a=document.createElement("div"); a.className="actions";
+  var map=document.createElement("a"); map.className="btn"; map.target="_blank"; map.rel="noopener";
+  map.href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(p.n+", "+p.m.split("/")[0].trim()+", Slovensko");
+  map.textContent="📍 Mapa"; a.appendChild(map);
+  var sv=document.createElement("button"); sv.type="button"; sv.className="btn";
+  function paint(){ var on=saved.indexOf(p.i)>=0; sv.classList.toggle("saved",on); sv.innerHTML='<span class="heart">'+(on?"♥":"♡")+'</span> '+(on?"Uložené":"Uložiť"); sv.setAttribute("aria-pressed",on?"true":"false"); }
+  sv.addEventListener("click",function(){ var ix=saved.indexOf(p.i); if(ix>=0) saved.splice(ix,1); else saved.push(p.i); store(); paint(); if(state.kind==="SAVED") draw(); });
+  paint(); a.appendChild(sv);
+  li.appendChild(a);
+  return li;
+}
+
+function draw(){
+  var q=norm(state.q.trim());
+  var items=P.filter(function(p){
+    if(state.region && p.r!==state.region) return false;
+    if(state.kind==="SAVED"){ if(saved.indexOf(p.i)<0) return false; }
+    else if(state.kind && p.k!==state.kind) return false;
+    if(q && norm(p.n+" "+p.m+" "+p.t+" "+p.d).indexOf(q)<0) return false;
+    return true;
+  });
+  var box=document.getElementById("list"); box.innerHTML="";
+  var c=document.getElementById("count");
+  c.textContent = items.length===1 ? "1 miesto" : (items.length>=2&&items.length<=4 ? items.length+" miesta" : items.length+" miest");
+  if(!items.length){
+    var e=document.createElement("p"); e.className="empty";
+    e.textContent = state.kind==="SAVED" ? "Zatiaľ nemáš nič uložené. Ťukni na ♡ Uložiť pri mieste, kam chceš ísť." : "Nič som nenašla. Skús iné slovo alebo zruš filter.";
+    box.appendChild(e); return;
+  }
+  REG.forEach(function(r){
+    var group=items.filter(function(p){return p.r===r;});
+    if(!group.length) return;
+    var h=document.createElement("h2"); h.className="region"; h.textContent=title(r); box.appendChild(h);
+    var s=document.createElement("p"); s.className="region-sub";
+    s.textContent = group.length===1?"1 miesto":(group.length<=4?group.length+" miesta":group.length+" miest"); box.appendChild(s);
+    var ul=document.createElement("ul"); ul.className="list";
+    group.forEach(function(p){ ul.appendChild(card(p)); });
+    box.appendChild(ul);
+  });
+}
+draw();
+})();
+</script>
+</body>
+</html>

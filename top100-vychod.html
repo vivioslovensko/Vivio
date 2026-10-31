@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TOP 100 miest východného Slovenska · VIVIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lora:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0D1B2A; --yellow:#FFD233; --green:#4CAF50; --blue:#1BA7E8; --paper:#F2F4F7;
+  --bg:#FAF8F3; --surface:#FFFFFF; --ink:#0D1B2A; --muted:#55606E; --line:#E3DFD6; --chip:#FFFFFF;
+  --sans:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --serif:"Lora",Georgia,"Times New Roman",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#0A1521; --surface:#13243A; --ink:#EEF2F7; --muted:#A3AEBC; --line:#24384F; --chip:#13243A; }
+}
+:root[data-theme="dark"]{ --bg:#0A1521; --surface:#13243A; --ink:#EEF2F7; --muted:#A3AEBC; --line:#24384F; --chip:#13243A; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 150px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* header on the light brand paper so the navy wordmark stays legible */
+header.top{background:#FAF8F3;color:var(--navy)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:4px}
+header.top img.logo{width:84px;height:auto;display:block}
+header.top a.ig{font-size:15px;font-weight:600;text-decoration:none;color:var(--navy);border:2px solid var(--navy);border-radius:999px;padding:7px 14px}
+
+.hero{position:relative;background:var(--navy);color:#fff;margin-top:24px}
+.tear{display:block;width:100%;height:20px;color:var(--navy)}
+.tear.up{position:absolute;top:-19px;left:0}
+.tear.down{position:absolute;bottom:-19px;left:0;transform:scaleY(-1)}
+.hero .wrap{padding-top:28px;padding-bottom:34px}
+.kicker{font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--yellow);margin:0 0 10px}
+.hero h1{font-size:clamp(36px,9.5vw,58px);line-height:1.04;font-weight:800;letter-spacing:-.02em;margin:0 0 16px}
+.hero h1 span{font-family:var(--serif);font-style:italic;font-weight:600;color:var(--yellow)}
+.vivi{display:flex;align-items:center;gap:14px;margin-top:20px}
+.vivi img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #fff;flex:none}
+.vivi p{margin:0;font-size:16px;line-height:1.45;color:#D6DEE8}
+.vivi p b{color:#fff}
+
+/* sticky filters */
+.filters{position:sticky;top:0;z-index:5;background:var(--bg);padding-top:calc(env(safe-area-inset-top,0px) + 12px);padding-bottom:10px;border-bottom:1px solid var(--line);margin-top:30px}
+.search{width:100%;font:inherit;font-size:17px;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+.search:focus,.chip:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.row{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.row::-webkit-scrollbar{display:none}
+.chip{flex:none;font:inherit;font-size:15px;font-weight:500;color:var(--ink);background:var(--chip);border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+:root[data-theme="dark"] .chip[aria-pressed="true"]{background:#EEF2F7;color:var(--navy);border-color:#EEF2F7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip[aria-pressed="true"]{background:#EEF2F7;color:var(--navy);border-color:#EEF2F7}}
+.chip .sw{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;vertical-align:1px}
+.count{font-size:14px;color:var(--muted);margin:8px 0 0}
+
+/* legend */
+.legend{margin:26px 0 0;display:grid;gap:10px}
+.legend div{display:flex;gap:12px;align-items:baseline;font-size:15px;color:var(--muted)}
+.legend b{color:var(--ink);font-weight:600;white-space:nowrap}
+
+/* list */
+main.wrap{padding-bottom:30px}
+h2.region{font-size:24px;line-height:1.2;margin:40px 0 4px;font-weight:800}
+p.region-sub{margin:0 0 14px;font-size:15px;color:var(--muted)}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;position:relative}
+.num{grid-row:span 3;font-weight:800;font-size:28px;line-height:1;min-width:46px;padding-top:4px;letter-spacing:-.02em}
+.card h3{margin:0;font-size:19px;line-height:1.3;font-weight:700}
+.meta{font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+.badge{font-size:12px;font-weight:700;letter-spacing:.04em;border-radius:6px;padding:2px 8px;color:var(--navy)}
+.b-TOP{background:var(--yellow)} .b-TIP{background:var(--green)} .b-POD{background:var(--blue)}
+.desc{margin:4px 0 0;font-size:16px;line-height:1.5}
+.actions{grid-column:2;display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{font:inherit;font-size:14px;font-weight:600;text-decoration:none;color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:10px;padding:7px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn.saved{border-color:var(--green);color:var(--ink)}
+.btn.saved .heart{color:var(--green)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+.cta{position:relative;background:var(--navy);color:#fff;margin-top:50px}
+.cta .wrap{padding-top:30px;padding-bottom:34px;text-align:center}
+.cta h2{font-size:26px;line-height:1.25;margin:0 0 10px}
+.cta p{margin:0 auto 18px;color:#D6DEE8;max-width:34ch}
+.cta a.follow{display:inline-block;background:var(--yellow);color:var(--navy);font-weight:700;text-decoration:none;border-radius:12px;padding:14px 22px;font-size:17px}
+.tagline{font-weight:700;font-size:22px;margin-top:28px}
+.tagline .n{color:var(--blue)} .tagline .d{color:var(--yellow)} .tagline .z{color:var(--green)}
+.fine{font-size:13px;color:#9FB0C3;margin-top:18px;line-height:1.5}
+.guides{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.guides a{font-size:14px;font-weight:600;text-decoration:none;color:#fff;border:1.5px solid rgba(255,255,255,.45);border-radius:999px;padding:6px 14px}
+.guides a[aria-current="page"]{background:var(--yellow);border-color:var(--yellow);color:var(--navy)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <img class="logo" src="vivio-logo.png" alt="vivio">
+    <a class="ig" href="https://www.instagram.com/vivio_slovensko/" target="_blank" rel="noopener">@vivio_slovensko</a>
+  </div>
+</header>
+
+<div class="hero">
+  <svg class="tear up" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,20 L0,6 L17,10 L32,8 L54,3 L78,2 L101,3 L116,7 L147,3 L165,10 L198,9 L220,14 L235,12 L255,4 L271,6 L302,4 L327,10 L349,9 L364,3 L382,10 L405,6 L430,7 L450,12 L478,5 L504,8 L535,11 L555,14 L572,7 L601,4 L624,2 L652,11 L677,13 L698,10 L723,9 L747,12 L779,8 L807,3 L835,10 L869,12 L888,7 L916,2 L939,4 L955,3 L985,4 L1000,8 L1000,20 Z"/></svg>
+  <div class="wrap">
+    <p class="kicker">VIVIO Scout · sprievodca</p>
+    <h1>100 miest východného Slovenska, <span>kam sa oplatí ísť</span></h1>
+    <div class="vivi">
+      <img src="vivi.jpg" alt="Vivi">
+      <p><b>Vybrala Vivi z VIVIO.</b> Známe klasiky aj miesta pod radarom: od Polonín po Gemer. Ulož si tie, kam chceš ísť.</p>
+    </div>
+    <nav class="guides" aria-label="Sprievodcovia"><a href="top100-vychod.html" aria-current="page">Východ</a><a href="top100-stred.html">Stred</a><a href="top100-zapad.html">Západ</a></nav>
+  </div>
+  <svg class="tear down" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,20 L0,6 L17,10 L32,8 L54,3 L78,2 L101,3 L116,7 L147,3 L165,10 L198,9 L220,14 L235,12 L255,4 L271,6 L302,4 L327,10 L349,9 L364,3 L382,10 L405,6 L430,7 L450,12 L478,5 L504,8 L535,11 L555,14 L572,7 L601,4 L624,2 L652,11 L677,13 L698,10 L723,9 L747,12 L779,8 L807,3 L835,10 L869,12 L888,7 L916,2 L939,4 L955,3 L985,4 L1000,8 L1000,20 Z"/></svg>
+</div>
+
+<div class="filters">
+  <div class="wrap">
+    <input class="search" id="q" type="search" placeholder="Hľadaj: jaskyňa, hrad, Košice…" aria-label="Hľadať">
+    <div class="row" id="regionRow" role="group" aria-label="Región"></div>
+    <div class="row" id="kindRow" role="group" aria-label="Typ"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="legend">
+    <div><span class="badge b-TOP">TOP</span><span>Povinná klasika, ktorú treba vidieť.</span></div>
+    <div><span class="badge b-TIP">TIP</span><span>Silný regionálny tip.</span></div>
+    <div><span class="badge b-POD">POD RADAROM</span><span>Miesta, o ktorých vie málokto.</span></div>
+  </div>
+  <div id="list"></div>
+</main>
+
+<section class="cta">
+  <svg class="tear up" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,20 L0,6 L17,10 L32,8 L54,3 L78,2 L101,3 L116,7 L147,3 L165,10 L198,9 L220,14 L235,12 L255,4 L271,6 L302,4 L327,10 L349,9 L364,3 L382,10 L405,6 L430,7 L450,12 L478,5 L504,8 L535,11 L555,14 L572,7 L601,4 L624,2 L652,11 L677,13 L698,10 L723,9 L747,12 L779,8 L807,3 L835,10 L869,12 L888,7 L916,2 L939,4 L955,3 L985,4 L1000,8 L1000,20 Z"/></svg>
+  <div class="wrap">
+    <h2>Každý týždeň nové miesta a akcie</h2>
+    <p>Na Instagrame ukazujem, kam ísť tento víkend a čo sa deje vo vašom meste.</p>
+    <a class="follow" href="https://www.instagram.com/vivio_slovensko/" target="_blank" rel="noopener">Sledovať @vivio_slovensko</a>
+    <div class="tagline"><span class="n">Neprežívaj</span> <span class="d">•</span> <span class="z">Ži</span></div>
+    <p class="fine">Otváracie hodiny, vstupné, sezónnosť a sprístupnenie si pred cestou over na stránke miesta.<br>Zdroje: Severovýchod Slovenska (severovychod.sk), Košice Región Turizmus (kosiceregion.com), Slovakia.travel, Visit Košice a regionálne OOCR.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+"use strict";
+var P = [{"n": "Morské oko", "m": "Remetské Hámre", "t": "príroda • rodiny", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Jazero pod Vihorlatom a jeden z najkrajších pohodových výletov na východe."}, {"n": "Sninský kameň", "m": "Snina / Vihorlat", "t": "turistika • výhľady", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Ikonický skalný vrchol s výhľadmi na Vihorlat a okolie."}, {"n": "Vihorlat", "m": "Vihorlatské vrchy", "t": "turistika", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Výrazný sopečný vrchol a cieľ pre aktívnejších turistov."}, {"n": "Zemplínska šírava", "m": "Michalovce / Kaluža", "t": "voda • rodiny", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Kúpanie, vodné športy, promenády a západy slnka – ideálne na letný deň."}, {"n": "Vinianske jazero", "m": "Vinné", "t": "voda • oddych", "k": "TIP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Menšie jazero v lese, vhodné na pokojnejší výlet a kúpanie."}, {"n": "Viniansky hrad", "m": "Vinné", "t": "hrad • turistika", "k": "TIP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Krátka túra k ruinám s pekným výhľadom na Zemplínsku šíravu."}, {"n": "Senianske rybníky", "m": "Senné / Iňačovce", "t": "príroda • vtáctvo", "k": "POD RADAROM", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Jedna z najlepších lokalít na pozorovanie vtáctva na východnom Slovensku."}, {"n": "Vyhliadková veža Tokaj", "m": "Malá Tŕňa", "t": "výhľady • víno", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Veža v tvare suda nad tokajskými vinicami."}, {"n": "Tokajské pivnice", "m": "Malá Tŕňa / Veľká Tŕňa", "t": "gastro • víno", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Historické tufové pivnice a jedinečná atmosféra slovenskej časti Tokaja."}, {"n": "Herliansky gejzír", "m": "Herľany", "t": "prírodný unikát", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Studenovodný gejzír – jeden z najznámejších prírodných unikátov východu."}, {"n": "Brekovský hrad", "m": "Brekov", "t": "hrad • výhľady", "k": "TIP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Zrúcanina na brale pri Humennom s veľmi peknými výhľadmi."}, {"n": "Jasenovský hrad", "m": "Jasenov", "t": "hrad • rodiny", "k": "TIP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Príjemný lesný výlet z obce Jasenov k obnovovanej hradnej zrúcanine."}, {"n": "Kaštieľ a skanzen Humenné", "m": "Humenné", "t": "história • rodiny", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Kaštieľ, park a skanzen na jednom mieste – ideálny poldeň v meste."}, {"n": "Kaštieľ Snina", "m": "Snina", "t": "história • kultúra", "k": "TIP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Zrekonštruovaný kaštieľ s múzeom, galériou a parkom."}, {"n": "Národný park Poloniny", "m": "Snina / Bukovské vrchy", "t": "príroda • turistika", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Najdivokejší kút Slovenska, bukové pralesy, lúky a minimum davov."}, {"n": "Stužický prales", "m": "Nová Sedlica", "t": "prales • turistika", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "UNESCO bukový prales a silný zážitok z karpatskej divočiny."}, {"n": "Vodárenská nádrž Starina – vyhliadka", "m": "Starina", "t": "výhľady • príroda", "k": "POD RADAROM", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Fotogenická vyhliadka na najväčšiu zásobáreň pitnej vody na Slovensku."}, {"n": "Park tmavej oblohy Poloniny", "m": "Poloniny", "t": "hviezdy • noc", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Jedno z najlepších miest na Slovensku na pozorovanie nočnej oblohy."}, {"n": "Drevené chrámy Uličskej doliny", "m": "Topoľa / Uličské Krivé / Ruský Potok", "t": "pamiatky • kultúra", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Výlet po autentických rusínskych drevených chrámoch v Poloninách."}, {"n": "Múzeum moderného umenia Andyho Warhola", "m": "Medzilaborce", "t": "umenie • interiér", "k": "TOP", "r": "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY", "d": "Svetovo známe meno na nečakanom mieste – ideálny tip aj na daždivý deň."}, {"n": "Bardejov – historické centrum", "m": "Bardejov", "t": "UNESCO • mesto", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Jedno z najkrajších stredovekých námestí na Slovensku."}, {"n": "Bardejovské Kúpele", "m": "Bardejovské Kúpele", "t": "relax • história", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Kúpeľný areál, kolonáda a historická atmosféra v jednom."}, {"n": "Drevený kostol Hervartov", "m": "Hervartov", "t": "UNESCO • pamiatka", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Najstarší drevený rímskokatolícky kostol na Slovensku."}, {"n": "Hrad Šariš", "m": "Veľký Šariš", "t": "hrad • výhľady", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Rozsiahly hradný areál a ľahko dostupný výlet nad mestom."}, {"n": "Kapušiansky hrad", "m": "Kapušany", "t": "hrad • turistika", "k": "TIP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Obnovená zrúcanina s pekným panoramatickým výhľadom."}, {"n": "Slovenské opálové bane", "m": "Dubník / Červenica", "t": "podzemie • zážitok", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Historické bane s kilometrami podzemných chodieb a príbehom drahého opálu."}, {"n": "Múzeum Solivar", "m": "Prešov – Solivar", "t": "technika • história", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Unikátny technický komplex dokumentujúci tradičnú ťažbu a varenie soli."}, {"n": "Jaskyňa Zlá diera", "m": "Lipovce", "t": "jaskyňa • dobrodružstvo", "k": "POD RADAROM", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Komornejší dobrodružný vstup do podzemia mimo klasických veľkých jaskýň."}, {"n": "Lačnovský kaňon", "m": "Lačnov", "t": "príroda • turistika", "k": "POD RADAROM", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Skalnatá dolina s tiesňavovým charakterom a krásnym okolím Braniska."}, {"n": "Hermanovské skaly a Údolie obrov", "m": "Hermanovce nad Topľou", "t": "príroda • výlet", "k": "POD RADAROM", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Netradičné skalné útvary a legenda, ktorá sa výborne hodí do rubriky „Toto som nevedela“."}, {"n": "Šimonka", "m": "Slanské vrchy", "t": "turistika", "k": "TIP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Najvyšší vrch Slanských vrchov s prírodnou rezerváciou."}, {"n": "Vrch Mindžová s rozhľadňou a útulňou", "m": "okres Prešov", "t": "turistika • rozhľadňa", "k": "POD RADAROM", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Výlet s odmenou v podobe rozhľadne a útulne."}, {"n": "Kalvária v Prešove", "m": "Prešov", "t": "výhľady • pamiatka", "k": "TIP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Barokový komplex nad mestom s výhľadom na Prešov."}, {"n": "Ortodoxná synagóga", "m": "Prešov", "t": "kultúra • interiér", "k": "TIP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Vzácny židovský interiér a silná historická atmosféra."}, {"n": "Rozhľadňa na Malkovskej hôrke", "m": "Prešov", "t": "výhľady • rodiny", "k": "TIP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Krátky výlet nad Prešovom vhodný aj ako rýchly popoludňajší program."}, {"n": "Vyhliadka Srdiečko", "m": "Lipovce", "t": "výhľady • foto", "k": "POD RADAROM", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Malá fotogenická vyhliadka vhodná ako zastávka pri výlete v okolí."}, {"n": "Skanzen vo Svidníku", "m": "Svidník", "t": "skanzen • rodiny", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Rozsiahla expozícia tradičnej architektúry Rusínov a Ukrajincov."}, {"n": "Dukliansky priesmyk a vyhliadková veža", "m": "Dukla", "t": "história • výhľady", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Silné miesto vojenskej histórie s panoramatickým výhľadom."}, {"n": "Drevený chrám Bodružal", "m": "Bodružal", "t": "UNESCO • pamiatka", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Jedna z najcennejších drevených sakrálnych stavieb severovýchodu."}, {"n": "Drevený chrám Ladomirová", "m": "Ladomirová", "t": "UNESCO • pamiatka", "k": "TOP", "r": "ŠARIŠ A PREŠOVSKÉ OKOLIE", "d": "Autentický drevený chrám v rusínskej krajine."}, {"n": "Spišský hrad", "m": "Spišské Podhradie", "t": "UNESCO • hrad", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Monumentálny hradný komplex a povinná klasika východného Slovenska."}, {"n": "Spišská Kapitula", "m": "Spišské Podhradie", "t": "UNESCO • história", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Opevnené cirkevné mestečko, ideálne spojiť so Spišským hradom."}, {"n": "Spišský Jeruzalem", "m": "Spišské Podhradie", "t": "krajina • história", "k": "POD RADAROM", "r": "SPIŠ, PIENINY A TATRY", "d": "Unikátna baroková kalvária komponovaná podľa Jeruzalema."}, {"n": "Levoča – historické centrum", "m": "Levoča", "t": "UNESCO • mesto", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Majster Pavol, historické námestie a jedna z najkrajších mestských rezervácií."}, {"n": "Mariánska hora", "m": "Levoča", "t": "pútnické miesto • výhľady", "k": "TIP", "r": "SPIŠ, PIENINY A TATRY", "d": "Významné pútnické miesto s výhľadom na Levoču a okolie."}, {"n": "Dreveník", "m": "Spišské Podhradie", "t": "príroda • skaly", "k": "POD RADAROM", "r": "SPIŠ, PIENINY A TATRY", "d": "Travertínová skalná plošina s výhľadmi a zvláštnou krajinou."}, {"n": "Sivá Brada", "m": "Spišské Podhradie", "t": "prírodný unikát", "k": "POD RADAROM", "r": "SPIŠ, PIENINY A TATRY", "d": "Travertínová kopa s minerálnymi prameňmi – krátka, ale netradičná zastávka."}, {"n": "Kežmarský hrad", "m": "Kežmarok", "t": "hrad • história", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Mestský hrad v historickom centre Kežmarku."}, {"n": "Drevený artikulárny kostol", "m": "Kežmarok", "t": "UNESCO • pamiatka", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Výnimočný drevený evanjelický kostol bez kovových klincov."}, {"n": "Kaštieľ Strážky", "m": "Spišská Belá – Strážky", "t": "umenie • park", "k": "TIP", "r": "SPIŠ, PIENINY A TATRY", "d": "Renesančný kaštieľ s galériou a príjemným historickým parkom."}, {"n": "Belianska jaskyňa", "m": "Tatranská Kotlina", "t": "jaskyňa • rodiny", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Jediná sprístupnená jaskyňa vo Vysokých Tatrách."}, {"n": "Chodník korunami stromov Bachledka", "m": "Ždiar / Bachledova dolina", "t": "rodiny • výhľady", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Veľmi vďačný rodinný výlet s panorámou Belianskych Tatier."}, {"n": "Ždiar a Ždiarsky dom", "m": "Ždiar", "t": "tradície • Tatry", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Goralská obec, ľudová architektúra a skvelý východiskový bod."}, {"n": "Monkova dolina", "m": "Ždiar", "t": "turistika", "k": "TIP", "r": "SPIŠ, PIENINY A TATRY", "d": "Jedna z najkrajších dolín Belianskych Tatier."}, {"n": "Tatranská Lomnica", "m": "Vysoké Tatry", "t": "hory • rodiny", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Lanovky, múzeá, výlety aj výhľady – univerzálny tatranský cieľ."}, {"n": "Hrebienok", "m": "Starý Smokovec", "t": "rodiny • príroda", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Ľahko dostupný východiskový bod k vodopádom a horským chodníkom."}, {"n": "Vodopády Studeného potoka", "m": "Starý Smokovec", "t": "vodopády • rodiny", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Krásny krátky výlet z Hrebienka vhodný aj pre rodiny."}, {"n": "Štrbské pleso", "m": "Štrbské Pleso", "t": "jazero • rodiny", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Ikonická tatranská klasika s jednoduchou prechádzkou okolo plesa."}, {"n": "Popradské pleso", "m": "Mengusovská dolina", "t": "turistika • jazero", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Jeden z najvďačnejších horských cieľov pre stredne náročný výlet."}, {"n": "Tricklandia", "m": "Starý Smokovec", "t": "deti • interiér", "k": "TIP", "r": "SPIŠ, PIENINY A TATRY", "d": "Optické ilúzie a zábava – dobrá voľba pri zlom počasí."}, {"n": "Poliankovo", "m": "Tatranská Polianka", "t": "deti • interiér", "k": "TIP", "r": "SPIŠ, PIENINY A TATRY", "d": "Digitálna galéria a zážitková expozícia vhodná aj na daždivý deň."}, {"n": "Ľubovniansky hrad a skanzen", "m": "Stará Ľubovňa", "t": "hrad • rodiny", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Jeden z najlepších rodinných historických výletov v regióne."}, {"n": "Viktóriine záhrady", "m": "Stará Ľubovňa", "t": "deti • zážitok", "k": "TIP", "r": "SPIŠ, PIENINY A TATRY", "d": "Veľké prírodné bludisko s úlohami a vyhliadkou."}, {"n": "Jarabinský prielom", "m": "Jarabina", "t": "príroda • výlet", "k": "POD RADAROM", "r": "SPIŠ, PIENINY A TATRY", "d": "Krátky skalný kaňon neďaleko Starej Ľubovne."}, {"n": "Červený Kláštor", "m": "Pieniny", "t": "história • príroda", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Kláštor, Dunajec a Pieniny v jednom výlete."}, {"n": "Splav Dunajca", "m": "Červený Kláštor / Lesnica", "t": "zážitok • rodiny", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Tradičné plte alebo raft v jednom z najkrajších riečnych prielomov."}, {"n": "Lesnické sedlo", "m": "Lesnica", "t": "výhľady • foto", "k": "POD RADAROM", "r": "SPIŠ, PIENINY A TATRY", "d": "Veľmi fotogenická krajina Pienin bez potreby náročnej turistiky."}, {"n": "Travertínové jazierko Kráter", "m": "Vyšné Ružbachy", "t": "prírodný unikát", "k": "POD RADAROM", "r": "SPIŠ, PIENINY A TATRY", "d": "Najväčšie travertínové jazero na Slovensku; kúpanie sa v ňom nepovoľuje."}, {"n": "Osturňa", "m": "Spišská Magura", "t": "dedina • architektúra", "k": "POD RADAROM", "r": "SPIŠ, PIENINY A TATRY", "d": "Dlhá goralská obec so zachovanou tradičnou architektúrou."}, {"n": "Nestville Park", "m": "Hniezdne", "t": "rodiny • gastro", "k": "TIP", "r": "SPIŠ, PIENINY A TATRY", "d": "Remeslá, expozície, čokoláda a rodinné podujatia."}, {"n": "Jazero Blajzloch", "m": "Hrabušice / Slovenský raj", "t": "príroda • foto", "k": "POD RADAROM", "r": "SPIŠ, PIENINY A TATRY", "d": "Pokojné lesné jazierko, ktoré pôsobí takmer seversky."}, {"n": "Suchá Belá", "m": "Slovenský raj", "t": "roklina • rebríky", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Najznámejšia roklina Slovenského raja s vodopádmi a rebríkmi."}, {"n": "Prielom Hornádu", "m": "Slovenský raj", "t": "turistika • adrenalín", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Stúpačky nad riekou a dramatické skalné scenérie."}, {"n": "Tomášovský výhľad", "m": "Slovenský raj", "t": "výhľady • foto", "k": "TOP", "r": "SPIŠ, PIENINY A TATRY", "d": "Jedna z najfotogenickejších skalných vyhliadok na Slovensku."}, {"n": "Zejmarská roklina", "m": "Dedinky", "t": "roklina • turistika", "k": "TIP", "r": "SPIŠ, PIENINY A TATRY", "d": "Kratšia a menej preplnená roklina Slovenského raja."}, {"n": "Historické centrum Košíc", "m": "Košice", "t": "mesto • kultúra", "k": "TOP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Hlavná ulica, Dóm sv. Alžbety, Spievajúca fontána a mestská atmosféra."}, {"n": "Vyhliadková veža Hradová", "m": "Košice", "t": "výhľady • rodiny", "k": "TIP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Rýchly výlet nad Košicami s panorámou mesta."}, {"n": "Zoo Košice", "m": "Kavečany", "t": "deti • zvieratá", "k": "TOP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Jedna z najväčších zoologických záhrad v strednej Európe."}, {"n": "Alpinka", "m": "Košice", "t": "rodiny • oddych", "k": "TIP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Rekreačný areál v Čermeľskom údolí, vhodný na rodinný deň."}, {"n": "Košická detská historická železnica", "m": "Čermeľ", "t": "deti • zážitok", "k": "TOP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Historický vláčik je jeden z najobľúbenejších rodinných zážitkov v Košiciach."}, {"n": "Jasovská jaskyňa", "m": "Jasov", "t": "jaskyňa • história", "k": "TOP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "UNESCO jaskyňa s bohatou kvapľovou výzdobou a kláštorom v susedstve."}, {"n": "Zádielska tiesňava", "m": "Zádiel", "t": "príroda • turistika", "k": "TOP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Monumentálna krasová tiesňava a jeden z top výletov Slovenského krasu."}, {"n": "Turniansky hrad", "m": "Turňa nad Bodvou", "t": "hrad • výhľady", "k": "TIP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Krátka turistika k výraznej zrúcanine nad Turnianskou kotlinou."}, {"n": "Slanecký hrad", "m": "Slanec", "t": "hrad • výhľady", "k": "TIP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Dominanta Slanca s výhľadom na východoslovenskú krajinu."}, {"n": "Jazero Izra", "m": "Slanské vrchy", "t": "voda • príroda", "k": "POD RADAROM", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Lesné jazero na hranici so susedným Maďarskom, vhodné na pokojný únik."}, {"n": "Rozhľadňa Čerešenka", "m": "Čižatice", "t": "výhľady • rodiny", "k": "POD RADAROM", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Nenáročný výlet k rozhľadni v pokojnej krajine pri Košiciach."}, {"n": "Kojšovská hoľa", "m": "Volovské vrchy", "t": "turistika • výhľady", "k": "TOP", "r": "KOŠICE, ABOV A SLANSKÉ VRCHY", "d": "Obľúbený výhľadový vrch s panorámou východu."}, {"n": "Kaštieľ Betliar", "m": "Betliar", "t": "kaštieľ • park", "k": "TOP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Zachovaný šľachtický interiér a nádherný anglický park."}, {"n": "Krásna Hôrka – areál a podhradie", "m": "Krásnohorské Podhradie", "t": "hrad • história", "k": "TOP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Ikonický hradný areál; režim návštevy treba preveriť podľa aktuálneho sprístupnenia."}, {"n": "Mauzóleum Andrássyovcov", "m": "Krásnohorské Podhradie", "t": "pamiatka • interiér", "k": "TIP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Výnimočne zachované secesné mauzóleum."}, {"n": "Ochtinská aragonitová jaskyňa", "m": "Ochtiná", "t": "UNESCO • jaskyňa", "k": "TOP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Svetový unikát s aragonitovou výzdobou."}, {"n": "Domica", "m": "Kečovo", "t": "UNESCO • jaskyňa", "k": "TOP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Rozsiahla krasová jaskyňa s podzemnou riečkou."}, {"n": "Gombasecká jaskyňa", "m": "Slavec", "t": "UNESCO • jaskyňa", "k": "TOP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Známa tenkými sintrovými brčkami."}, {"n": "Krásnohorská jaskyňa", "m": "Krásnohorské Podhradie", "t": "jaskyňa • dobrodružstvo", "k": "TIP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Dobrodružnejší typ jaskynnej prehliadky; podmienky vstupu treba preveriť vopred."}, {"n": "Slavošovský tunel", "m": "Slavošovce", "t": "technická pamiatka • dobrodružstvo", "k": "POD RADAROM", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Nedokončený železničný tunel, ktorý sa dá prejsť pešo – silný „wow“ tip."}, {"n": "Dobšinská ľadová jaskyňa", "m": "Dobšiná", "t": "UNESCO • jaskyňa", "k": "TOP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Jedna z najvýznamnejších ľadových jaskýň v Európe."}, {"n": "Chmarošský viadukt", "m": "Telgárt", "t": "technická pamiatka • foto", "k": "TOP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Jedna z najfotografovanejších železničných stavieb Slovenska."}, {"n": "Palcmanská Maša", "m": "Dedinky", "t": "voda • oddych", "k": "TOP", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Vodná nádrž pod Slovenským rajom, vhodná na kombináciu s turistikou."}, {"n": "Stratenský kaňon", "m": "Stratená", "t": "príroda • rodiny", "k": "POD RADAROM", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Krátka a atraktívna tiesňava vhodná aj ako nenáročná zastávka."}, {"n": "Silická ľadnica", "m": "Silica", "t": "kras • turistika", "k": "POD RADAROM", "r": "GEMER A SLOVENSKÝ KRAS", "d": "Jedinečný krasový jav s chladnou priepasťou a ľadovou výzdobou."}];
+P.forEach(function(p,i){ p.i = i+1; });
+var REG = []; P.forEach(function(p){ if(REG.indexOf(p.r)<0) REG.push(p.r); });
+var SHORT = {
+  "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY":"Zemplín a Poloniny",
+  "ŠARIŠ A PREŠOVSKÉ OKOLIE":"Šariš a Prešov",
+  "SPIŠ, PIENINY A TATRY":"Spiš, Pieniny, Tatry",
+  "KOŠICE, ABOV A SLANSKÉ VRCHY":"Košice a Abov",
+  "GEMER A SLOVENSKÝ KRAS":"Gemer a Slovenský kras"
+};
+var FULL = {
+  "ZEMPLÍN, HORNÝ ZEMPLÍN A POLONINY":"Zemplín, Horný Zemplín a Poloniny",
+  "ŠARIŠ A PREŠOVSKÉ OKOLIE":"Šariš a prešovské okolie",
+  "SPIŠ, PIENINY A TATRY":"Spiš, Pieniny a Tatry",
+  "KOŠICE, ABOV A SLANSKÉ VRCHY":"Košice, Abov a Slanské vrchy",
+  "GEMER A SLOVENSKÝ KRAS":"Gemer a Slovenský kras"
+};
+function title(r){ return FULL[r]||r; }
+
+var saved = [];
+try{ saved = JSON.parse(localStorage.getItem("vivio-top100-saved")||"[]"); }catch(e){ saved=[]; }
+function store(){ try{ localStorage.setItem("vivio-top100-saved",JSON.stringify(saved)); }catch(e){} }
+
+var state = { region:"", kind:"", q:"" };
+
+function chip(row,label,val,key,sw){
+  var b=document.createElement("button"); b.className="chip"; b.type="button";
+  if(sw){ var s=document.createElement("span"); s.className="sw"; s.style.background=sw; b.appendChild(s); }
+  b.appendChild(document.createTextNode(label));
+  b.setAttribute("aria-pressed", state[key]===val ? "true":"false");
+  b.addEventListener("click",function(){
+    state[key]=val;
+    [].forEach.call(row.children,function(c){ c.setAttribute("aria-pressed", c===b?"true":"false"); });
+    draw(); window.scrollTo({top: document.querySelector(".filters").offsetTop - 2, behavior:"smooth"});
+  });
+  row.appendChild(b);
+}
+var rr=document.getElementById("regionRow"), kr=document.getElementById("kindRow");
+chip(rr,"Všetky regióny","","region");
+REG.forEach(function(r){ chip(rr,SHORT[r]||r,r,"region"); });
+chip(kr,"Všetky typy","","kind");
+chip(kr,"TOP","TOP","kind","#FFD233");
+chip(kr,"TIP","TIP","kind","#4CAF50");
+chip(kr,"Pod radarom","POD RADAROM","kind","#1BA7E8");
+chip(kr,"♥ Uložené","SAVED","kind");
+
+var qi=document.getElementById("q");
+qi.addEventListener("input",function(){ state.q=qi.value; draw(); });
+
+function norm(s){ return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+
+function card(p){
+  var li=document.createElement("li"); li.className="card";
+  var n=document.createElement("div"); n.className="num"; n.textContent=p.i; li.appendChild(n);
+  var h=document.createElement("h3"); h.textContent=p.n; li.appendChild(h);
+  var m=document.createElement("div"); m.className="meta";
+  var bd=document.createElement("span"); bd.className="badge b-"+(p.k==="POD RADAROM"?"POD":p.k); bd.textContent=p.k; m.appendChild(bd);
+  var t=document.createElement("span"); t.textContent=p.m+" · "+p.t; m.appendChild(t);
+  li.appendChild(m);
+  var d=document.createElement("p"); d.className="desc"; d.textContent=p.d; li.appendChild(d);
+  var a=document.createElement("div"); a.className="actions";
+  var map=document.createElement("a"); map.className="btn"; map.target="_blank"; map.rel="noopener";
+  map.href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(p.n+", "+p.m.split("/")[0].trim()+", Slovensko");
+  map.textContent="📍 Mapa"; a.appendChild(map);
+  var sv=document.createElement("button"); sv.type="button"; sv.className="btn";
+  function paint(){ var on=saved.indexOf(p.i)>=0; sv.classList.toggle("saved",on); sv.innerHTML='<span class="heart">'+(on?"♥":"♡")+'</span> '+(on?"Uložené":"Uložiť"); sv.setAttribute("aria-pressed",on?"true":"false"); }
+  sv.addEventListener("click",function(){ var ix=saved.indexOf(p.i); if(ix>=0) saved.splice(ix,1); else saved.push(p.i); store(); paint(); if(state.kind==="SAVED") draw(); });
+  paint(); a.appendChild(sv);
+  li.appendChild(a);
+  return li;
+}
+
+function draw(){
+  var q=norm(state.q.trim());
+  var items=P.filter(function(p){
+    if(state.region && p.r!==state.region) return false;
+    if(state.kind==="SAVED"){ if(saved.indexOf(p.i)<0) return false; }
+    else if(state.kind && p.k!==state.kind) return false;
+    if(q && norm(p.n+" "+p.m+" "+p.t+" "+p.d).indexOf(q)<0) return false;
+    return true;
+  });
+  var box=document.getElementById("list"); box.innerHTML="";
+  var c=document.getElementById("count");
+  c.textContent = items.length===1 ? "1 miesto" : (items.length>=2&&items.length<=4 ? items.length+" miesta" : items.length+" miest");
+  if(!items.length){
+    var e=document.createElement("p"); e.className="empty";
+    e.textContent = state.kind==="SAVED" ? "Zatiaľ nemáš nič uložené. Ťukni na ♡ Uložiť pri mieste, kam chceš ísť." : "Nič som nenašla. Skús iné slovo alebo zruš filter.";
+    box.appendChild(e); return;
+  }
+  REG.forEach(function(r){
+    var group=items.filter(function(p){return p.r===r;});
+    if(!group.length) return;
+    var h=document.createElement("h2"); h.className="region"; h.textContent=title(r); box.appendChild(h);
+    var s=document.createElement("p"); s.className="region-sub";
+    s.textContent = group.length===1?"1 miesto":(group.length<=4?group.length+" miesta":group.length+" miest"); box.appendChild(s);
+    var ul=document.createElement("ul"); ul.className="list";
+    group.forEach(function(p){ ul.appendChild(card(p)); });
+    box.appendChild(ul);
+  });
+}
+draw();
+})();
+</script>
+</body>
+</html>
